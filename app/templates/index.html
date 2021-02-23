@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wavestone Training App</title>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="context">
+        <div class="flexbox">
+            <div class="main-container">
+                <div class="img-container">
+                    <img class="cropped-img" src="{{ url_for('static', filename='img/wavestoneicon.png') }}"
+                        alt="Hello">
+                </div>
+                <div class="form-container">
+                    <form action="/" method="POST" enctype="multipart/form-data">
+                        <label for="user_file">Upload Your File</label>
+                        <br></br>
+                        <input class="label-item" type="file" name="user_file">
+                        <br></br>
+                        <button class="upload-button" type="submit">Submit</button>
+                        {% if vars.upload == True %}
+                        <p style="color: rgb(22, 126, 22); font-size: 1rem; font-weight: bold">Upload Successful! </p>
+                        {% endif %}
+                        {% if vars.upload == False %}
+                        <p style="color: rgb(136, 60, 50); font-size: 1rem; font-weight: bold"> Upload Error! </p>
+                        {% endif %}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="area">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+
+</html>
