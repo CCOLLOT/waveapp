@@ -77,3 +77,10 @@ resource "aws_iam_role_policy" "container_webapp_policy" {
     ]
   })
 }
+
+output "EC2_PUBLIC_DNS" {
+  value = aws_instance.container_webapp_instance.public_dns
+  }
+output "EC2_PUBLIC_IP" {
+  value = aws_instance.container_webapp_instance.public_ip
+  }
