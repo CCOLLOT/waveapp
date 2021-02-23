@@ -172,6 +172,7 @@ label{
     text-align: center;
     z-index:1;
     box-shadow: 0 0 4px rgb(245, 241, 241);
+    opacity:0.9;
 }
 
 
