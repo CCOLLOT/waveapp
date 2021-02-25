@@ -14,11 +14,8 @@ SUBNET_VAR={
 #**************************************EC2*******************************************
 
 EC2_VAR = {
-    AMI = "ami-0fc970315c2d38f01"
     INSTANCE_TYPE = "t2.micro"
-    AVAILABILITY_ZONE="eu-west-1"
   }
-
 
 #**************************************S3*******************************************
 BUCKET_NAME="container-webapp-bucket"

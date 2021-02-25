@@ -30,12 +30,25 @@ variable "SUBNET_VAR" {
 }
 
 #**************************************EC2*******************************************
+data "aws_ami" "amazon-linux-2" {
+ most_recent = true
+ owners=["amazon"]
+filter {
+   name   = "owner-alias"
+   values = ["amazon"]
+ }
+
+
+ filter {
+   name   = "name"
+   values = ["amzn2-ami-hvm*"]
+ }
+}
 
 variable "EC2_VAR" {
   type = map(string)
 
   default = {
-    AMI = "ami-0fc970315c2d38f01"
     INSTANCE_TYPE = "t2.micro"
   }
 }

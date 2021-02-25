@@ -1,5 +1,5 @@
 resource "aws_instance" "container_webapp_instance" {
-  ami                    = var.EC2_VAR.AMI
+  ami                    = data.aws_ami.amazon-linux-2.id
   instance_type          = var.EC2_VAR.INSTANCE_TYPE
   iam_instance_profile   = aws_iam_instance_profile.container_webapp_instance_profile.name
   user_data              = templatefile("startup.sh", { BUCKET_NAME = var.BUCKET_NAME })
@@ -22,6 +22,7 @@ resource "aws_iam_role" "container_webapp_instance_role" {
   name                  = "ContainerWebappInstanceRole"
   path                  = "/"
   force_detach_policies = true
+  managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"]
   assume_role_policy = jsonencode(
     {
       "Version" : "2012-10-17",
@@ -44,7 +45,7 @@ resource "aws_iam_role" "container_webapp_instance_role" {
   }
 }
 
-resource "aws_iam_role_policy" "container_webapp_policy" {
+resource "aws_iam_role_policy" "container_webapp_s3_policy" {
   name = "container_webapp_policy"
   role = aws_iam_role.container_webapp_instance_role.id
 
@@ -77,7 +78,6 @@ resource "aws_iam_role_policy" "container_webapp_policy" {
     ]
   })
 }
-
 output "EC2_PUBLIC_DNS" {
   value = aws_instance.container_webapp_instance.public_dns
   }
